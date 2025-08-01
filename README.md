@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This case study evaluates a new mobile feature released by a **digital wellness platform** designed to encourage participants to log their weight more consistently.\
+This case study evaluates a new mobile feature released by a **digital wellness platform** designed to encourage participants to log their weight more consistently.
 
 The analysis demonstrates:
 
@@ -49,7 +49,7 @@ Digital_Wellness_CaseStudy/
 
 ---
 
-## 🧩 Step 1: Data Querying (SQL)
+## 🧩 Step 1: Data Extraction (SQL)
 
 Two SQL tables contained baseline weights, feature adoption flags, and weight loss outcomes. Assessing weight loss for mobile vs. non-mobile users regardless of feature.
 
