@@ -1,0 +1,87 @@
+---
+title: "Digital Health Wellness Case Study - Statistical Analysis"
+author: "Nicholas Edwards"
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+library("tidyverse")
+library("readxl")
+```
+
+Reads in the relevant spreadsheet and puts either tab of data into its own data frame.
+
+```{r data import}
+fct_weights <- read_xlsx(path = "weights.xlsx", sheet = "fct_weights")
+dim_project_dates <- read_xlsx(path = "weights.xlsx", sheet = "dim_project_dates")
+
+```
+
+Changing the new feature column to be a character to prevent it from being understood as a continuous variable. 
+
+```{r data cleaning}
+fct_weights$new_feature <- fct_weights$new_feature %>%
+  as.character()
+
+# Verified that the column was now a character instead of numeric
+#is.character(fct_weights$new_feature)
+```
+
+Displays summary statistics for max_weight_loss for the the relevant groupings: new_feature and mobile.
+
+```{r summary stats, message = FALSE}
+group_by(fct_weights, mobile, new_feature) %>%
+  summarise(
+    count = n(),
+    mean = mean(max_weight_loss),
+    max = max(max_weight_loss),
+    min = min(max_weight_loss),
+    sd = sd(max_weight_loss)
+  )
+
+```
+
+Creates simple box plots to visualize the summary statistics on the relevant groupings: new_feature and mobile.
+
+```{r boxplot}
+fct_weights %>%
+  #Assigns new_feature as the discrete x var, max_weight_loss as the y var, and also adds the color (fill) to distinguish new_feature
+  ggplot(aes(x = new_feature, y = max_weight_loss, group = new_feature, fill = new_feature)) +
+  #Specifies the plot type (i.e., box plot)
+  geom_boxplot() +
+  #Creates additional set of box plots by group for mobile and reorders (levels) to have Yes first and No second
+  facet_wrap(~ factor(mobile, levels = c("Yes", "No")))
+```
+
+Checking for normality in the two groups to be tested (needs to be p > 0.05).
+
+```{r normality test}
+fct_weights %>%
+  with(shapiro.test(max_weight_loss[mobile == "Yes" & new_feature == "1"]))
+
+fct_weights %>%
+  with(shapiro.test(max_weight_loss[mobile == "Yes" & new_feature == "0"]))
+```
+As both of the p-values are > 0.05, it can be assumed that the distribution of the data is not significantly different from a normal distribution.
+
+Checking for difference in variance between the groups (of those using mobile, if they had the new feature or not) to perform t-test
+
+```{r variance test}
+#Creating new data frame to perform the test by filtering on only users on mobile
+mobile_yes <- fct_weights %>%
+  filter(mobile == "Yes")
+
+#Executes the variance test
+var.test(max_weight_loss ~ new_feature, mobile_yes)
+```
+As the p-value is >0.05, it can be assumed that the variances of the two groups of data are not significantly different. 
+
+Determining if there is a statistically significant difference between the means of the new_feature groups of users on mobile
+
+```{r t-test}
+t.test(max_weight_loss ~ new_feature, data = mobile_yes, var.equal = TRUE)
+```
+As the p-value is < 0.05, the difference in the average weights between the two feature groups is considered to be a significant difference.
