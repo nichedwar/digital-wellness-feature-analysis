@@ -71,6 +71,8 @@ GROUP BY t1.mobile;
 | Yes         | 8.3                   |
 | No          | 8.4                   |
 
+**Key Insight:** Mobile and non-mobile users had similar averages, prompting deeper analysis.
+
 📄 [View SQL Script](Step1_SQL/CaseStudy_Step1.sql)
 
 ---
@@ -93,6 +95,8 @@ GROUP BY t1.mobile;
 - **Mobile group:** statistically significant improvement (t-test)
 - **Non-mobile group:** no significant change
 
+**Key Insight:** Feature impact is significant for mobile users, negligible for non-mobile users.
+
 📊 [Excel File](Step2_Analysis/weights.xlsx)\
 📜 [RMarkdown Analysis](Step2_Analysis/StatisticalAnalysis.Rmd)
 
@@ -108,7 +112,7 @@ An interactive A/B Test dashboard was built for product and clinical managers.
 - **Trend Over Time** — Weight loss trajectory by cohort
 - **Filters** — Start date, device type, cohort
 
-
+**Key Insight:** Dashboard supports real-time monitoring and cohort-specific insights.
 
 📊 [Power BI File](Step3_Effectiveness/ABTestDashboard.pbix)
 
