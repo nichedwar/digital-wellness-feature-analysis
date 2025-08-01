@@ -7,7 +7,7 @@ This case study evaluates a new mobile feature released by a **digital wellness 
 The analysis demonstrates:
 
 - SQL-based **data extraction**
-- Excel & R **statistical analysis**
+- Excel **exploratory data analysis** & R **statistical analysis**
 - Power BI **A/B test visualization**
 
 The goal: determine whether the feature improved outcomes over a 10-week period and provide actionable recommendations.
