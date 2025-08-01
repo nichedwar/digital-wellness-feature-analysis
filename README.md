@@ -43,14 +43,14 @@ Digital_Wellness_CaseStudy/
 │   ├── dashboard_filters.png
 │
 └── Documentation/
-    └── CaseStudy_Questions.pdf
+    └── CaseStudy_Notes.pdf
 ```
 
 ---
 
 ## 🧩 Step 1: Data Extraction (SQL)
 
-Two SQL tables contained baseline weights, feature adoption flags, and weight loss outcomes.
+Two SQL tables contained baseline weights, feature adoption flags, and weight loss outcomes. Assessing weight loss for mobile vs. non-mobile users regardless of feature.
 
 **SQL Query:**
 
