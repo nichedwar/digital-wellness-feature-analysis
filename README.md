@@ -108,7 +108,6 @@ An interactive A/B Test dashboard was built for product and clinical managers.
 - **Trend Over Time** — Weight loss trajectory by cohort
 - **Filters** — Start date, device type, cohort
 
-\
 
 
 📊 [Power BI File](Step3_Effectiveness/ABTestDashboard.pbix)
